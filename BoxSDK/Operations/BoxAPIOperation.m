@@ -287,35 +287,39 @@ static BOOL BoxOperationStateTransitionIsValid(BoxAPIOperationState fromState, B
 - (void)executeOperation
 {
     BOXLog(@"BoxAPIOperation %@ was started", self);
-    if ([self isReady] && ![self isCancelled])
+    if (self.isReady || self.isExecuting)
     {
-        @synchronized(self.OAuth2Session)
+        if (self.isCancelled)
         {
-            [self prepareAPIRequest];
-            self.OAuth2AccessToken = self.OAuth2Session.accessToken;
-        }
-
-        if (self.error == nil && ![self isCancelled])
-        {
-            self.connection = [[NSURLConnection alloc] initWithRequest:self.APIRequest delegate:self];
-            BOXLog(@"Starting %@", self);
-            [self startURLConnection];
+            BOXLog(@"BoxAPIOperation %@ was cancelled -- short circuiting and not making API call", self);
+            [self finish];
         }
         else
         {
-            // if an error has already occured, do not attempt to start the API call.
-            // short circuit instead.
-            [self finish];
+            @synchronized(self.OAuth2Session)
+            {
+                [self prepareAPIRequest];
+                self.OAuth2AccessToken = self.OAuth2Session.accessToken;
+            }
+            
+            if (self.error == nil && !self.isCancelled)
+            {
+                self.connection = [[NSURLConnection alloc] initWithRequest:self.APIRequest delegate:self];
+                BOXLog(@"Starting %@", self);
+                [self startURLConnection];
+            }
+            else
+            {
+                // if an error has already occured, do not attempt to start the API call.
+                // short circuit instead.
+                [self finish];
+            }
         }
-    }
-    else if ([self isReady] && [self isCancelled])
-    {
-        BOXLog(@"BoxAPIOperation %@ was cancelled -- short circuiting and not making API call", self);
-        [self finish];
     }
     else
     {
         BOXAssertFail(@"Operation was not ready but start was called");
+        [self finish];
     }
 }
 

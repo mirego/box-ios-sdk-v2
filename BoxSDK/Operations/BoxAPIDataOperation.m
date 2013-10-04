@@ -189,7 +189,7 @@
     {
         if (self.receivedDataBuffer.length == 0)
         {
-            BOXLog(@"BoxAPIDataOperation has space on output stream but no data to write to it.");
+//            BOXLog(@"BoxAPIDataOperation has space on output stream but no data to write to it.");
             self.outputStreamHasSpaceAvailable = YES;
             return; // bail out because we have nothing to write
         }
