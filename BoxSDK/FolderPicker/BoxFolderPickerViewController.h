@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import <BoxSDK/BoxFolderPickerTableViewController.h>
-#import <BoxSDK/BoxAuthorizationViewController.h>
-#import <BoxSDK/BoxSDK.h>
+#import "BoxFolderPickerTableViewController.h"
+#import "BoxAuthorizationViewController.h"
+#import "BoxSDK.h"
 
 @class BoxFolder;
 @class BoxFile;

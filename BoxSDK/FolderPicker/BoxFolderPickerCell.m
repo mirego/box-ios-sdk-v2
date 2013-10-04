@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Box. All rights reserved.
 //
 
-#import <BoxSDK/UIImage+BoxAdditions.h>
-#import <BoxSDK/NSString+BoxAdditions.h>
+#import "UIImage+BoxAdditions.h"
+#import "NSString+BoxAdditions.h"
 
-#import <BoxSDK/BoxFolderPickerCell.h>
-#import <BoxSDK/BoxItem.h>
-#import <BoxSDK/BoxFolder.h>
-#import <BoxSDK/BoxFolderPickerHelper.h>
-#import <BoxSDK/BoxSDK.h>
+#import "BoxFolderPickerCell.h"
+#import "BoxItem.h"
+#import "BoxFolder.h"
+#import "BoxFolderPickerHelper.h"
+#import "BoxSDK.h"
 
 #import <QuartzCore/QuartzCore.h>
 

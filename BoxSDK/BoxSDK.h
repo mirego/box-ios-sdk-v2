@@ -11,55 +11,55 @@
 #import <Foundation/Foundation.h>
 
 // constants and logging
-#import <BoxSDK/BoxSDKConstants.h>
-#import <BoxSDK/BoxLog.h>
-#import <BoxSDK/BoxSDKErrors.h>
+#import "BoxSDKConstants.h"
+#import "BoxLog.h"
+#import "BoxSDKErrors.h"
 
 // OAuth2
-#import <BoxSDK/BoxAuthorizationViewController.h>
-#import <BoxSDK/BoxOAuth2Session.h>
-#import <BoxSDK/BoxSerialOAuth2Session.h>
-#import <BoxSDK/BoxParallelOAuth2Session.h>
+#import "BoxAuthorizationViewController.h"
+#import "BoxOAuth2Session.h"
+#import "BoxSerialOAuth2Session.h"
+#import "BoxParallelOAuth2Session.h"
 
 // API Operation queues
-#import <BoxSDK/BoxAPIQueueManager.h>
-#import <BoxSDK/BoxSerialAPIQueueManager.h>
-#import <BoxSDK/BoxParallelAPIQueueManager.h>
+#import "BoxAPIQueueManager.h"
+#import "BoxSerialAPIQueueManager.h"
+#import "BoxParallelAPIQueueManager.h"
 
 // API Operations
-#import <BoxSDK/BoxAPIOperation.h>
-#import <BoxSDK/BoxAPIOAuth2ToJSONOperation.h>
-#import <BoxSDK/BoxAPIAuthenticatedOperation.h>
-#import <BoxSDK/BoxAPIJSONOperation.h>
-#import <BoxSDK/BoxAPIMultipartToJSONOperation.h>
-#import <BoxSDK/BoxAPIDataOperation.h>
+#import "BoxAPIOperation.h"
+#import "BoxAPIOAuth2ToJSONOperation.h"
+#import "BoxAPIAuthenticatedOperation.h"
+#import "BoxAPIJSONOperation.h"
+#import "BoxAPIMultipartToJSONOperation.h"
+#import "BoxAPIDataOperation.h"
 
 // Request building
-#import <BoxSDK/BoxAPIRequestBuilder.h>
-#import <BoxSDK/BoxFilesRequestBuilder.h>
-#import <BoxSDK/BoxFoldersRequestBuilder.h>
-#import <BoxSDK/BoxSharedObjectBuilder.h>
+#import "BoxAPIRequestBuilder.h"
+#import "BoxFilesRequestBuilder.h"
+#import "BoxFoldersRequestBuilder.h"
+#import "BoxSharedObjectBuilder.h"
 
 // API Resource Managers
-#import <BoxSDK/BoxAPIResourceManager.h>
-#import <BoxSDK/BoxFilesResourceManager.h>
-#import <BoxSDK/BoxFoldersResourceManager.h>
+#import "BoxAPIResourceManager.h"
+#import "BoxFilesResourceManager.h"
+#import "BoxFoldersResourceManager.h"
 
 // API models
-#import <BoxSDK/BoxModel.h>
-#import <BoxSDK/BoxModelComparators.h>
-#import <BoxSDK/BoxCollection.h>
-#import <BoxSDK/BoxItem.h>
-#import <BoxSDK/BoxFile.h>
-#import <BoxSDK/BoxFolder.h>
-#import <BoxSDK/BoxUser.h>
-#import <BoxSDK/BoxWebLink.h>
+#import "BoxModel.h"
+#import "BoxModelComparators.h"
+#import "BoxCollection.h"
+#import "BoxItem.h"
+#import "BoxFile.h"
+#import "BoxFolder.h"
+#import "BoxUser.h"
+#import "BoxWebLink.h"
 
 // Folder Picker
-#import <BoxSDK/BoxFolderPickerHelper.h>
-#import <BoxSDK/BoxFolderPickerTableViewController.h>
-#import <BoxSDK/BoxFolderPickerViewController.h>
-#import <BoxSDK/BoxFolderPickerNavigationController.h>
+#import "BoxFolderPickerHelper.h"
+#import "BoxFolderPickerTableViewController.h"
+#import "BoxFolderPickerViewController.h"
+#import "BoxFolderPickerNavigationController.h"
 
 
 extern NSString *const BoxAPIBaseURL;
@@ -67,7 +67,7 @@ extern NSString *const BoxAPIBaseURL;
 /**
  * The BoxSDK class is a class that exposes a [Box V2 API Rest Client](http://developers.box.com/docs/).
  *
- * Access to this class and all other components of the BoxSDK can be granted by including `<BoxSDK/BoxSDK.h>`
+ * Access to this class and all other components of the BoxSDK can be granted by including `"BoxSDK.h"`
  * in your source code.
  *
  * This class provides a class method sharedSDK which provides a preconfigured SDK client,

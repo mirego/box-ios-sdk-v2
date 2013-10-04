@@ -8,10 +8,10 @@
 
 #define kCellHeight 58.0
 
-#import <BoxSDK/BoxFolderPickerTableViewController.h>
-#import <BoxSDK/BoxSDK.h>
-#import <BoxSDK/BoxOAuth2Session.h>
-#import <BoxSDK/BoxFolderPickerCell.h>
+#import "BoxFolderPickerTableViewController.h"
+#import "BoxSDK.h"
+#import "BoxOAuth2Session.h"
+#import "BoxFolderPickerCell.h"
 
 
 @implementation BoxFolderPickerTableViewController

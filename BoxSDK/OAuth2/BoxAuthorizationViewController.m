@@ -308,10 +308,6 @@
 					// The user indicated that you may trust the certificate for the purposes designated in the specified policies. This value may be returned by the SecTrustEvaluate function or stored as part of the user trust settings. In the Keychain Access utility, this value is termed “Always Trust.”
 					// Do not request user confirmation, it is safe to proceed.
 					break;
-				case kSecTrustResultConfirm:
-					// Confirmation from the user is required before proceeding. This value may be returned by the SecTrustEvaluate function or stored as part of the user trust settings. In the Keychain Access utility, this value is termed “Ask Permission.”
-					requestUserConfirmation = YES;
-					break;
 				case kSecTrustResultDeny:
 					// The user specified that the certificate should not be trusted. This value may be returned by the SecTrustEvaluate function or stored as part of the user trust settings. In the Keychain Access utility, this value is termed “Never Trust.”
 					requestUserConfirmation = YES;
