@@ -81,11 +81,17 @@ NSString *const BoxOAuth2OperationDidCompleteNotification = @"BoxOAuth2Operation
 {
     if (self.error == nil)
     {
-        self.success(self.APIRequest, self.HTTPResponse, self.responseJSON);
+        if (self.success)
+        {
+            self.success(self.APIRequest, self.HTTPResponse, self.responseJSON);
+        }
     }
     else
     {
-        self.failure(self.APIRequest, self.HTTPResponse, self.error, self.responseJSON);
+        if (self.failure)
+        {
+            self.failure(self.APIRequest, self.HTTPResponse, self.error, self.responseJSON);
+        }
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:BoxOAuth2OperationDidCompleteNotification object:self];
