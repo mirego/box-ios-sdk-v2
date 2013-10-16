@@ -2,7 +2,7 @@
 //  BoxFoldersResourceManager.h
 //  BoxSDK
 //
-//  Created bon 3/12/13.
+//  Created on 3/12/13.
 //  Copyright (c) 2013 Box. All rights reserved.
 //
 

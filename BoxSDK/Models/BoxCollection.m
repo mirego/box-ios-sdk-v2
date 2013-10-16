@@ -12,6 +12,7 @@
 #import "BoxFile.h"
 #import "BoxFolder.h"
 #import "BoxWebLink.h"
+#import "BoxUser.h"
 
 #import "BoxLog.h"
 #import "BoxSDKConstants.h"
@@ -102,6 +103,10 @@
     else if ([BoxAPIItemTypeWebLink isEqual:type])
     {
         return [[BoxWebLink alloc] initWithResponseJSON:entry mini:YES];
+    }
+    else if ([BoxAPIItemTypeUser isEqual:type])
+    {
+        return [[BoxUser alloc] initWithResponseJSON:entry mini:NO];
     }
     else
     {

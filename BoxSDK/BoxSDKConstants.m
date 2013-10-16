@@ -49,6 +49,7 @@ NSString *const BoxOAuth2TokenRequestGrantTypeRefreshToken = @"refresh_token";
 BoxAPIItemType *const BoxAPIItemTypeFile = @"file";
 BoxAPIItemType *const BoxAPIItemTypeFolder = @"folder";
 BoxAPIItemType *const BoxAPIItemTypeWebLink = @"web_link";
+BoxAPIItemType *const BoxAPIItemTypeUser = @"user";
 
 // Collection keys
 NSString *const BoxAPICollectionKeyEntries = @"entries";
@@ -69,6 +70,7 @@ NSString *const BoxAPIObjectKeyTrashedAt = @"trashed_at";
 NSString *const BoxAPIObjectKeyPurgedAt = @"purged_at";
 NSString *const BoxAPIObjectKeyDescription = @"description";
 NSString *const BoxAPIObjectKeySize = @"size";
+NSString *const BoxAPIObjectKeyCommentCount = @"comment_count";
 NSString *const BoxAPIObjectKeyPathCollection = @"path_collection";
 NSString *const BoxAPIObjectKeyCreatedBy = @"created_by";
 NSString *const BoxAPIObjectKeyModifiedBy = @"modified_by";
@@ -80,6 +82,25 @@ NSString *const BoxAPIObjectKeyItemStatus = @"item_status";
 NSString *const BoxAPIObjectKeyItemCollection = @"item_collection";
 NSString *const BoxAPIObjectKeySyncState = @"sync_state";
 NSString *const BoxAPIObjectKeyURL = @"url";
+NSString *const BoxAPIObjectKeyLogin = @"login";
+NSString *const BoxAPIObjectKeyRole = @"role";
+NSString *const BoxAPIObjectKeyLanguage = @"language";
+NSString *const BoxAPIObjectKeySpaceAmount = @"space_amount";
+NSString *const BoxAPIObjectKeySpaceUsed = @"space_used";
+NSString *const BoxAPIObjectKeyMaxUploadSize = @"max_upload_size";
+NSString *const BoxAPIObjectKeyTrackingCodes = @"tracking_codes";
+NSString *const BoxAPIObjectKeyCanSeeManagedUsers = @"can_see_managed_users";
+NSString *const BoxAPIObjectKeyIsSyncEnabled = @"is_sync_enabled";
+NSString *const BoxAPIObjectKeyStatus = @"status";
+NSString *const BoxAPIObjectKeyJobTitle = @"job_title";
+NSString *const BoxAPIObjectKeyPhone = @"phone";
+NSString *const BoxAPIObjectKeyAddress = @"address";
+NSString *const BoxAPIObjectKeyAvatarURL = @"avatar_url";
+NSString *const BoxAPIObjectKeyIsExemptFromDeviceLimits = @"is_exempt_from_device_limits";
+NSString *const BoxAPIObjectKeyIsExemptFromLoginVerification = @"is_exempt_from_login_verification";
+NSString *const BoxAPIObjectKeyIsDeactivated = @"is_deactivated";
+NSString *const BoxAPIObjectKeyHasCustomAvatar = @"has_custom_avatar";
+NSString *const BoxAPIObjectKeyIsPasswordResetRequired = @"is_password_reset_required";
 
 // errors
 NSString *const BoxSDKErrorDomain = @"com.box.sdk.errordomain";

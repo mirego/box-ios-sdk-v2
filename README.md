@@ -2,7 +2,7 @@ BoxSDK: Box API V2 iOS SDK
 ==========================
 
 This SDK provides access to the [Box V2 API](https://developers.box.com/docs/).
-It currently supports file and folder operations.
+It currently supports file, folder, and user operations.
 
 We have built [several sample applications with the V2 SDK](https://github.com/box/box-ios-sdk-sample-app).
 
@@ -236,5 +236,5 @@ Pull requests will not be accepted unless they include documentation.
 ## Known issues
 
 * There is no support for manipulating files in the trash.
-* Only the files and folders endpoints are supported.
+* Only the files, folders, and users endpoints are supported.
 

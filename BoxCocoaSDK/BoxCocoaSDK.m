@@ -20,6 +20,7 @@
 @synthesize queueManager = _queueManager;
 @synthesize foldersManager = _foldersManager;
 @synthesize filesManager = _filesManager;
+@synthesize usersManager = _usersManager;
 
 #pragma mark - Globally accessible API singleton instance
 + (BoxCocoaSDK *)sharedSDK
@@ -48,6 +49,9 @@
         sharedBoxSDK.filesManager.uploadAPIVersion = BoxAPIUploadAPIVersion;
         
         sharedBoxSDK.foldersManager = [[BoxFoldersResourceManager alloc] initWithAPIBaseURL:BoxAPIBaseURL OAuth2Session:sharedBoxSDK.OAuth2Session queueManager:sharedBoxSDK.queueManager];
+
+        sharedBoxSDK.usersManager = [[BoxUsersResourceManager alloc] initWithAPIBaseURL:BoxAPIBaseURL OAuth2Session:sharedBoxSDK.OAuth2Session queueManager:sharedBoxSDK.queueManager];
+
     });
     
     return sharedBoxSDK;
@@ -61,6 +65,7 @@
     // managers
     self.filesManager.APIBaseURL = APIBaseURL;
     self.foldersManager.APIBaseURL = APIBaseURL;
+    self.usersManager.APIBaseURL = APIBaseURL;
 }
 
 /*

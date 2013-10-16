@@ -21,4 +21,17 @@
                                        nullAllowed:NO];
 }
 
+- (NSNumber *)commentCount
+{
+    NSNumber *commentCount = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyCommentCount
+                                                        inDictionary:self.rawResponseJSON
+                                                     hasExpectedType:[NSNumber class]
+                                                         nullAllowed:NO];
+    if (commentCount != nil)
+    {
+        commentCount = [NSNumber numberWithInteger:[commentCount intValue]];
+    }
+    return commentCount;
+}
+
 @end
