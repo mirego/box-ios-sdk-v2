@@ -45,6 +45,12 @@
     BoxAssertThrowsInDebugOrAssertNilInRelease([NSJSONSerialization ensureObjectForKey:JSON_NULL_KEY inDictionary:decodedJSONObject hasExpectedType:[NSString class] nullAllowed:NO], @"Should return nil or throw when nullAllowed = NO");
 }
 
+- (void)testThatNullConvertedToNilWhenNullNotAllowedAndNullSuppressed
+{
+    id result = [NSJSONSerialization ensureObjectForKey:JSON_NULL_KEY inDictionary:decodedJSONObject hasExpectedType:[NSString class] nullAllowed:YES suppressNullAsNil:YES];
+    STAssertNil(result, @"Should return nil for null values when nullAllowed = YES and suppressNullAsNil = YES");
+}
+
 - (void)testThatObjectIsReturnedIfNullAllowedAndNonNullAndExpectedType
 {
     id result = [NSJSONSerialization ensureObjectForKey:JSON_NULLABLE_KEY inDictionary:decodedJSONObject hasExpectedType:[NSString class] nullAllowed:YES];

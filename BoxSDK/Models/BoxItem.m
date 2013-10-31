@@ -22,7 +22,8 @@
     return [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeySequenceID
                                       inDictionary:self.rawResponseJSON
                                    hasExpectedType:[NSString class]
-                                       nullAllowed:NO];
+                                       nullAllowed:YES // root folders have no sequence id
+                                 suppressNullAsNil:YES];
 }
 
 - (NSString *)ETag
@@ -30,7 +31,8 @@
     return [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyETag
                                       inDictionary:self.rawResponseJSON
                                    hasExpectedType:[NSString class]
-                                       nullAllowed:NO];
+                                       nullAllowed:YES // root folders have no ETags
+                                 suppressNullAsNil:YES];
 }
 
 - (NSString *)name
@@ -44,9 +46,10 @@
 - (NSDate *)createdAt
 {
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyCreatedAt
-                                      inDictionary:self.rawResponseJSON
-                                   hasExpectedType:[NSString class]
-                                       nullAllowed:NO];
+                                                     inDictionary:self.rawResponseJSON
+                                                  hasExpectedType:[NSString class]
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -55,7 +58,8 @@
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyModifiedAt
                                                      inDictionary:self.rawResponseJSON
                                                   hasExpectedType:[NSString class]
-                                                      nullAllowed:NO];
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -64,7 +68,8 @@
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyContentCreatedAt
                                                      inDictionary:self.rawResponseJSON
                                                   hasExpectedType:[NSString class]
-                                                      nullAllowed:NO];
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -73,7 +78,8 @@
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyContentModifiedAt
                                                      inDictionary:self.rawResponseJSON
                                                   hasExpectedType:[NSString class]
-                                                      nullAllowed:NO];
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -82,7 +88,8 @@
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyTrashedAt
                                                      inDictionary:self.rawResponseJSON
                                                   hasExpectedType:[NSString class]
-                                                      nullAllowed:NO];
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -91,7 +98,8 @@
     NSString *timestamp = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyPurgedAt
                                                      inDictionary:self.rawResponseJSON
                                                   hasExpectedType:[NSString class]
-                                                      nullAllowed:NO];
+                                                      nullAllowed:YES // root folders have no timestamps
+                                                suppressNullAsNil:YES];
     return [self dateWithISO8601String:timestamp];
 }
 
@@ -184,17 +192,25 @@
                                        nullAllowed:YES];
 }
 
-- (BoxFolder *)parent
+- (id)parent
 {
-    NSDictionary *parentJSON = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyParent
-                                                          inDictionary:self.rawResponseJSON
-                                                       hasExpectedType:[NSDictionary class]
-                                                           nullAllowed:NO];
+    id parentJSON = [NSJSONSerialization ensureObjectForKey:BoxAPIObjectKeyParent
+                                               inDictionary:self.rawResponseJSON
+                                            hasExpectedType:[NSDictionary class]
+                                                nullAllowed:YES];
 
     BoxFolder *parent = nil;
     if (parentJSON != nil)
     {
-        parent = [[BoxFolder alloc] initWithResponseJSON:parentJSON mini:YES];
+        if ([parentJSON isKindOfClass:[NSNull class]])
+        {
+            return [NSNull null];
+        }
+        else
+        {
+            NSDictionary *parentJSONDictionary = (NSDictionary *)parentJSON;
+            parent = [[BoxFolder alloc] initWithResponseJSON:parentJSONDictionary mini:YES];
+        }
     }
     return parent;
 }

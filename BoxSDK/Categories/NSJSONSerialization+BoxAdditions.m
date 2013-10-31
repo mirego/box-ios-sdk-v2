@@ -40,4 +40,22 @@
     return extractedObject;
 }
 
++ (id)ensureObjectForKey:(NSString *)key inDictionary:(NSDictionary *)dictionary hasExpectedType:(Class)cls nullAllowed:(BOOL)nullAllowed suppressNullAsNil:(BOOL)suppressNullAsNil
+{
+    id extractedObject = [self ensureObjectForKey:key
+                                     inDictionary:dictionary
+                                  hasExpectedType:cls
+                                      nullAllowed:nullAllowed];
+
+    if (suppressNullAsNil)
+    {
+        if ([extractedObject isEqual:[NSNull null]])
+        {
+            extractedObject = nil;
+        }
+    }
+
+    return extractedObject;
+}
+
 @end

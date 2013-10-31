@@ -115,9 +115,9 @@
 /**
  * The BoxFolder where this item is located. This field is always given
  * in terms of the owner's view. If this item does not live in the current
- * user's tree, this field will be `NSNull`.
+ * user's tree or is the root of a tree, this field will be `NSNull`.
  */
-@property (nonatomic, readonly) BoxFolder *parent;
+@property (nonatomic, readonly) id parent;
 
 /**
  * Whether this item is deleted or not.

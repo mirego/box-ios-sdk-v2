@@ -16,7 +16,8 @@
 #define BOX_API_FILES_SUBRESOURCE_CONTENT   (@"content")
 #define BOX_API_FILES_SUBRESOURCE_THUMBNAIL (@"thumbnail.png")
 
-#define BOX_API_MULTIPART_FILENAME_FIELD (@"file")
+#define BOX_API_MULTIPART_FILENAME_FIELD   (@"file")
+#define BOX_API_MULTIPART_FILENAME_DEFAULT (@"upload")
 
 #define BOX_THUMBNAIL_MIN_HEIGHT (@"min_height")
 #define BOX_THUMBNAIL_MIN_WIDTH  (@"min_width")
@@ -24,6 +25,8 @@
 @interface BoxFilesResourceManager ()
 
 - (BoxAPIJSONOperation *)JSONOperationWithURL:(NSURL *)URL HTTPMethod:(BoxAPIHTTPMethod *)HTTPMethod queryStringParameters:(NSDictionary *)queryParameters bodyDictionary:(NSDictionary *)bodyDictionary fileSuccessBlock:(BoxFileBlock)success failureBlock:(BoxAPIJSONFailureBlock)failure mini:(BOOL)mini;
+
+- (NSString *)nonEmptyFilename:(NSString *)filename;
 
 @end
 
@@ -68,6 +71,19 @@
     }
 
     return [[NSURL alloc] initWithString:URLString];
+}
+
+- (NSString *)nonEmptyFilename:(NSString *)filename
+{
+    if ([filename length] == 0)
+    {
+        NSDate *now = [NSDate date];
+        NSString *nowString = [NSDateFormatter localizedStringFromDate:now
+                                                             dateStyle:NSDateFormatterShortStyle
+                                                             timeStyle:NSDateFormatterShortStyle];
+        filename = [BOX_API_MULTIPART_FILENAME_DEFAULT stringByAppendingFormat:@" %@", nowString];
+    }
+    return filename;
 }
 
 - (BoxAPIJSONOperation *)JSONOperationWithURL:(NSURL *)URL HTTPMethod:(BoxAPIHTTPMethod *)HTTPMethod queryStringParameters:(NSDictionary *)queryParameters bodyDictionary:(NSDictionary *)bodyDictionary fileSuccessBlock:(BoxFileBlock)success failureBlock:(BoxAPIJSONFailureBlock)failure mini:(BOOL)mini
@@ -192,9 +208,10 @@
                                                                                         queryParams:builder.queryStringParameters
                                                                                       OAuth2Session:self.OAuth2Session];
 
+    NSString *filename = [self nonEmptyFilename:builder.name];
     [operation appendMultipartPieceWithData:data
                                   fieldName:BOX_API_MULTIPART_FILENAME_FIELD
-                                   filename:builder.name
+                                   filename:filename
                                    MIMEType:MIMEType];
 
     BoxAPIJSONSuccessBlock JSONSuccessBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary *JSONDictionary)
@@ -238,10 +255,11 @@
                                                                                         queryParams:builder.queryStringParameters
                                                                                       OAuth2Session:self.OAuth2Session];
 
+    NSString *filename = [self nonEmptyFilename:builder.name];
     [operation appendMultipartPieceWithInputStream:inputStream
                                      contentLength:contentLength
                                          fieldName:BOX_API_MULTIPART_FILENAME_FIELD
-                                          filename:builder.name
+                                          filename:filename
                                           MIMEType:MIMEType];
 
     BoxAPIJSONSuccessBlock JSONSuccessBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary *JSONDictionary)
@@ -285,9 +303,10 @@
                                                                                         queryParams:builder.queryStringParameters
                                                                                       OAuth2Session:self.OAuth2Session];
 
+    NSString *filename = [self nonEmptyFilename:builder.name];
     [operation appendMultipartPieceWithData:data
                                   fieldName:BOX_API_MULTIPART_FILENAME_FIELD
-                                   filename:builder.name
+                                   filename:filename
                                    MIMEType:MIMEType];
 
     BoxAPIJSONSuccessBlock JSONSuccessBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary *JSONDictionary)
@@ -331,10 +350,11 @@
                                                                                         queryParams:builder.queryStringParameters
                                                                                       OAuth2Session:self.OAuth2Session];
 
+    NSString *filename = [self nonEmptyFilename:builder.name];
     [operation appendMultipartPieceWithInputStream:inputStream
                                      contentLength:contentLength
                                          fieldName:BOX_API_MULTIPART_FILENAME_FIELD
-                                          filename:builder.name
+                                          filename:filename
                                           MIMEType:MIMEType];
 
     BoxAPIJSONSuccessBlock JSONSuccessBlock = ^(NSURLRequest *request, NSHTTPURLResponse *response, NSDictionary *JSONDictionary)

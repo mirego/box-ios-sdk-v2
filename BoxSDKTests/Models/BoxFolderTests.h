@@ -14,8 +14,11 @@
 {
     NSDictionary *JSONDictionaryFull;
     NSDictionary *JSONDictionaryMini;
+    NSDictionary *JSONDictionaryRoot;
     BoxFolder *folder;
     BoxFolder *miniFolder;
+    // The root folder is special and has keys that are not normally nullable
+    BoxFolder *rootFolder;
 }
 
 @end

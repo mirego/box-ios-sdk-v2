@@ -25,6 +25,7 @@ BoxAPIHTTPMethod *const BoxAPIHTTPMethodPUT = @"PUT";
 
 // HTTP Header Names
 BoxAPIHTTPHeader *const BoxAPIHTTPHeaderAuthorization = @"Authorization";
+BoxAPIHTTPHeader *const BoxAPIHTTPHeaderContentType = @"Content-Type";
 
 // OAuth2 constants
 // Authorization code response

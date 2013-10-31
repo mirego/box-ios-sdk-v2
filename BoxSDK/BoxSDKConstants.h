@@ -25,6 +25,7 @@ extern BoxAPIHTTPMethod *const BoxAPIHTTPMethodPUT;
 // HTTP Header Names
 typedef NSString BoxAPIHTTPHeader;
 extern BoxAPIHTTPHeader *const BoxAPIHTTPHeaderAuthorization;
+extern BoxAPIHTTPHeader *const BoxAPIHTTPHeaderContentType;
 
 // OAuth2 constants
 // Authorization code response

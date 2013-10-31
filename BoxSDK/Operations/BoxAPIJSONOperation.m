@@ -9,6 +9,8 @@
 #import "BoxAPIJSONOperation.h"
 #import "BoxSDKErrors.h"
 
+#define BOX_API_CONTENT_TYPE_JSON  (@"application/json")
+
 @implementation BoxAPIJSONOperation
 
 @synthesize success = _success;
@@ -44,6 +46,15 @@
     }
     
     return self;
+}
+
+- (void)prepareAPIRequest
+{
+    [super prepareAPIRequest];
+    if ([self.HTTPMethod isEqualToString:BoxAPIHTTPMethodPOST] || [self.HTTPMethod isEqualToString:BoxAPIHTTPMethodPUT])
+    {
+        [self.APIRequest addValue:BOX_API_CONTENT_TYPE_JSON forHTTPHeaderField:BoxAPIHTTPHeaderContentType];
+    }
 }
 
 - (NSData *)encodeBody:(NSDictionary *)bodyDictionary
